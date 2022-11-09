@@ -15,6 +15,11 @@ namespace TrilhaApiDesafio.Controllers
 			_context = context;
 		}
 
+		/// <summary>
+		/// Retornar uma tarefa por ID
+		/// </summary>
+		/// <param name="id">ID da terefa</param>
+		/// <returns>Retornar not found se ID não existir, caso contrário, retornar Ok.</returns>
 		[HttpGet("{id}")]
 		public IActionResult ObterPorId(int id)
 		{
