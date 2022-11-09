@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace TrilhaApiDesafio.Models
 {
+	/// <summary>
+	/// Representa uma tarefa
+	/// </summary>
 	public class Tarefa
 	{
 		public int Id { get; set; }
