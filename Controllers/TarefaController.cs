@@ -15,6 +15,7 @@ namespace TrilhaApiDesafio.Controllers
 			_context = context;
 		}
 
+		// Create new tasks
 		[HttpPost]
 		public IActionResult Criar(Tarefa tarefa)
 		{
@@ -25,6 +26,7 @@ namespace TrilhaApiDesafio.Controllers
 			return CreatedAtAction(nameof(ObterPorId), new { id = tarefa.Id }, tarefa);
 		}
 
+		// Find an existing task by ID
 		[HttpGet("{id}")]
 		public IActionResult ObterPorId(int id)
 		{
@@ -66,6 +68,7 @@ namespace TrilhaApiDesafio.Controllers
 			return Ok(tarefa);
 		}
 
+		// Alters a saved task
 		[HttpPut("{id}")]
 		public IActionResult Atualizar(int id, Tarefa tarefa)
 		{
@@ -77,9 +80,15 @@ namespace TrilhaApiDesafio.Controllers
 			if (tarefa.Data == DateTime.MinValue)
 				return BadRequest(new { Erro = "A data da tarefa não pode ser vazia" });
 
-			// TODO: Atualizar as informações da variável tarefaBanco com a tarefa recebida via parâmetro
-			// TODO: Atualizar a variável tarefaBanco no EF e salvar as mudanças (save changes)
-			return Ok();
+			tarefaBanco.Titulo = tarefa.Titulo;
+			tarefaBanco.Descricao = tarefa.Descricao;
+			tarefaBanco.Data = tarefa.Data;
+			tarefaBanco.Status = tarefa.Status;
+
+			_context.Tarefas.Update(tarefaBanco);
+			_context.SaveChanges();
+
+			return Ok(tarefaBanco);
 		}
 
 		[HttpDelete("{id}")]
