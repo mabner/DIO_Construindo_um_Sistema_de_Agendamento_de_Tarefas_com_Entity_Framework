@@ -15,7 +15,6 @@ namespace TrilhaApiDesafio.Controllers
 			_context = context;
 		}
 
-		// Create new tasks
 		[HttpPost]
 		public IActionResult Criar(Tarefa tarefa)
 		{
@@ -26,7 +25,6 @@ namespace TrilhaApiDesafio.Controllers
 			return CreatedAtAction(nameof(ObterPorId), new { id = tarefa.Id }, tarefa);
 		}
 
-		// Find an existing task by ID
 		[HttpGet("{id}")]
 		public IActionResult ObterPorId(int id)
 		{
@@ -68,7 +66,6 @@ namespace TrilhaApiDesafio.Controllers
 			return Ok(tarefa);
 		}
 
-		// Alters a saved task
 		[HttpPut("{id}")]
 		public IActionResult Atualizar(int id, Tarefa tarefa)
 		{
