@@ -18,6 +18,7 @@ namespace TrilhaApiDesafio.Controllers
 		[HttpPost]
 		public IActionResult Criar(Tarefa tarefa)
 		{
+			// TODO: Validade for duplicates (409 - Conflict)
 			if (tarefa.Data == DateTime.MinValue)
 				return BadRequest(new { Erro = "A data da tarefa não pode ser vazia" });
 			_context.Add(tarefa);
